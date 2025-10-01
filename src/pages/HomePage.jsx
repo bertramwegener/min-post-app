@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
+
 export default function HomePage() {
-    return (
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        async function getPosts() {
+            const url = "https://expo-post-app-4a4f3-default-rtdb.europe-west1.firebasedatabase.app/posts.json";
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log("Data fra Firebase:", data);
+        }
+        getPosts();
+    }, []);
+
+    return(
         <section className="page">
-            <h1>Home Page</h1>
-            <p>Home is where the heart is 💛</p>
-            <p>Oh My, sounds like a bad movie!</p>
+
+            <h1>Posts kommer her</h1>
+
         </section>
     );
 }
